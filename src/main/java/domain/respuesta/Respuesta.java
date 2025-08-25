@@ -1,8 +1,7 @@
-package domain.topico;
+package domain.respuesta;
 
 
-import domain.curso.Curso;
-import domain.respuesta.Respuesta;
+import domain.topico.Topico;
 import domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,32 +9,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Entity
-@Table(name="topico")
-public class Topico {
+@Table(name="respuesta")
+public class Respuesta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String titulo;
+
     private String mensaje;
     @Column(name="fecha_creacion")
     private LocalDateTime fechaCreacion;
-    private Boolean status;
+    private Boolean solucion;
 
     @ManyToOne
     @JoinColumn(name="autor_id")
     private Usuario autor;
     @ManyToOne
-    @JoinColumn(name="curso_id")
-    private Curso curso;
+    @JoinColumn(name="topico_id")
+    private Topico topico;
 
-    @OneToMany(mappedBy="topico", fetch = FetchType.LAZY)
-    private List<Respuesta> respuestas;
+
+
 
 }
