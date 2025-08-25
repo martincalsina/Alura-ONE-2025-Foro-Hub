@@ -1,0 +1,1 @@
+ALTER TABLE topico RENAME COLUMN fechacreacion TO fecha_creacion;
